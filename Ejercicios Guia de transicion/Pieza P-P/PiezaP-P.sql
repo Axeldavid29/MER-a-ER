@@ -19,8 +19,9 @@ USE `PiezaP-P` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PiezaP-P`.`PIEZA` (
   `Cod-pieza` INT NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Color` VARCHAR(45) NULL,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Color` VARCHAR(45) NOT NULL,
+  `PIEZAcol` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Cod-pieza`))
 ENGINE = InnoDB;
 
@@ -31,7 +32,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PiezaP-P`.`P-P` (
   `PIEZA_Cod-pieza-Continente` INT NOT NULL,
   `PIEZA_Cod-pieza-Contenido` INT NOT NULL,
-  `Función` VARCHAR(45) NULL,
+  `Función` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`PIEZA_Cod-pieza-Continente`, `PIEZA_Cod-pieza-Contenido`),
   INDEX `fk_PIEZA_has_PIEZA_PIEZA1_idx` (`PIEZA_Cod-pieza-Contenido` ASC) VISIBLE,
   INDEX `fk_PIEZA_has_PIEZA_PIEZA_idx` (`PIEZA_Cod-pieza-Continente` ASC) VISIBLE)

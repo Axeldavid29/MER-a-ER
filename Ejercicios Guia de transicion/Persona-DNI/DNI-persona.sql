@@ -5,37 +5,33 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema EmpleadoVehiculo1
+-- Schema mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema EmpleadoVehiculo1
+-- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `EmpleadoVehiculo1` DEFAULT CHARACTER SET utf8 ;
-USE `EmpleadoVehiculo1` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `EmpleadoVehiculo1`.`EMPLEADO`
+-- Table `mydb`.`DNI`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo1`.`EMPLEADO` (
-  `codemp` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido1` VARCHAR(45) NULL,
-  `apellido2` VARCHAR(45) NULL,
-  PRIMARY KEY (`codemp`))
+CREATE TABLE IF NOT EXISTS `mydb`.`DNI` (
+  `Num-dni` INT NOT NULL,
+  PRIMARY KEY (`Num-dni`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `EmpleadoVehiculo1`.`VEHICULO`
+-- Table `mydb`.`PERSONA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo1`.`VEHICULO` (
-  `matricula` VARCHAR(45) NOT NULL,
-  `modelo` VARCHAR(45) NULL,
-  `fecha_inicio` DATETIME NULL,
-  `EMPLEADO_codemp` INT NOT NULL,
-  PRIMARY KEY (`matricula`),
-  INDEX `fk_VEHICULO_EMPLEADO_idx` (`EMPLEADO_codemp` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `mydb`.`PERSONA` (
+  `DNI_Num-dni` INT NOT NULL,
+  `nombre` VARCHAR(20) NOT NULL,
+  `apellido1` VARCHAR(20) NOT NULL,
+  `apellido2` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`DNI_Num-dni`))
 ENGINE = InnoDB;
 
 

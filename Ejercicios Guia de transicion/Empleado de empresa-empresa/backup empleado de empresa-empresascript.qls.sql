@@ -29,11 +29,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Empleado` (
   `Cod Empleado` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `1er apellido` VARCHAR(45) NOT NULL,
-  `2do apellido` VARCHAR(45) NOT NULL,
-  `Dirección` VARCHAR(45) NOT NULL,
+  `Nombre` VARCHAR(20) NOT NULL,
+  `Nombre2` VARCHAR(20) NULL,
+  `1er apellido` VARCHAR(20) NOT NULL,
+  `2do apellido` VARCHAR(20) NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
+  `Calle` VARCHAR(45) NOT NULL,
+  `Colonia` VARCHAR(20) NOT NULL,
+  `CP` INT NOT NULL,
   PRIMARY KEY (`Cod Empleado`))
 ENGINE = InnoDB;
 
@@ -103,8 +106,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Empresa_has_Empleado` (
   `Empresa_Cod-Empresa` INT NOT NULL,
   `Empleado_Cod Empleado` INT NOT NULL,
-  `Fecha_inicio` DATETIME NOT NULL,
-  `Fecha_Fin` DATETIME NULL,
+  `Fecha_inicio dia` DATE NOT NULL,
+  `Fecha_inicio mes` INT NOT NULL,
+  `Fecha inicio año` INT NOT NULL,
+  `Fecha fin dia` DATE NOT NULL,
+  `Fecha fin mes` DATE NOT NULL,
+  `Fecha fin año` DATE NOT NULL,
   PRIMARY KEY (`Empresa_Cod-Empresa`, `Empleado_Cod Empleado`),
   INDEX `fk_Empresa_has_Empleado_Empleado1_idx` (`Empleado_Cod Empleado` ASC) VISIBLE,
   INDEX `fk_Empresa_has_Empleado_Empresa1_idx` (`Empresa_Cod-Empresa` ASC) VISIBLE)

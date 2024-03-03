@@ -5,37 +5,40 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema EmpleadoVehiculo2
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema EmpleadoVehiculo2
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `EmpleadoVehiculo2` DEFAULT CHARACTER SET utf8 ;
+USE `EmpleadoVehiculo2` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`PROGRAMA`
+-- Table `EmpleadoVehiculo2`.`VEHICULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PROGRAMA` (
-  `cod_programa` INT NOT NULL,
-  `lenguaje` VARCHAR(20) NULL,
-  `sistema-operativo` VARCHAR(15) NULL,
-  `fecha-terminacion` DATETIME NULL,
-  PRIMARY KEY (`cod_programa`))
+CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo2`.`VEHICULO` (
+  `matricula` VARCHAR(45) NOT NULL,
+  `modelo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`matricula`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PROGRAMADOR`
+-- Table `EmpleadoVehiculo2`.`EMPLEADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PROGRAMADOR` (
-  `nombre_programador` VARCHAR(30) NOT NULL,
-  `nombre_2` VARCHAR(15) NULL,
-  `apellido_1` VARCHAR(15) NULL,
-  `apellido_2` VARCHAR(15) NULL,
-  `PROGRAMA_cod_programa` INT NOT NULL,
-  PRIMARY KEY (`nombre_programador`))
+CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo2`.`EMPLEADO` (
+  `codemp` INT NOT NULL,
+  `nombre` VARCHAR(20) NOT NULL,
+  `Nombre2` VARCHAR(20) NULL,
+  `apellido1` VARCHAR(20) NOT NULL,
+  `apellido2` VARCHAR(20) NOT NULL,
+  `fecha_inicio_dia` DATE NOT NULL,
+  `VEHICULO_matricula` VARCHAR(45) NOT NULL,
+  `fecha_inicio_mes` DATE NOT NULL,
+  `fecha_inicio_año` DATE NOT NULL,
+  PRIMARY KEY (`codemp`),
+  INDEX `fk_EMPLEADO_VEHICULO_idx` (`VEHICULO_matricula` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

@@ -15,27 +15,18 @@ CREATE SCHEMA IF NOT EXISTS `Persona` DEFAULT CHARACTER SET utf8 ;
 USE `Persona` ;
 
 -- -----------------------------------------------------
--- Table `Persona`.`FECHA DE NACIMIENTO`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Persona`.`FECHA DE NACIMIENTO` (
-  `dia_nacimiento` INT NOT NULL,
-  `mes_nacimiento` VARCHAR(45) NULL,
-  `año_nacimiento` VARCHAR(45) NULL,
-  PRIMARY KEY (`dia_nacimiento`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Persona`.`PERSONA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Persona`.`PERSONA` (
-  `nombre` INT NOT NULL,
-  `apellido_1` VARCHAR(45) NULL,
-  `apellido_2` VARCHAR(45) NULL,
+  `nombre` VARCHAR(20) NOT NULL,
+  `apellido_1` VARCHAR(20) NOT NULL,
+  `apellido_2` VARCHAR(20) NULL,
   `dni` INT NOT NULL,
-  `edad` VARCHAR(45) NULL,
-  `FECHA DE NACIMIENTO_dia_nacimiento` INT NOT NULL,
-  PRIMARY KEY (`nombre`, `dni`))
+  `edad` INT NOT NULL,
+  `FECHA DE NACIMIENTO_dia_nacimiento` DATE NOT NULL,
+  `fecha de nacimiento mes` DATE NOT NULL,
+  `fecha de nacimineto año` DATE NOT NULL,
+  PRIMARY KEY (`dni`))
 ENGINE = InnoDB;
 
 

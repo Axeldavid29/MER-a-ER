@@ -15,25 +15,31 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Empleado`
+-- Table `mydb`.`PROGRAMA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Empleado` (
-  `Nif` INT NOT NULL,
-  `Nombre` VARCHAR(255) NOT NULL,
-  `Apellido1` VARCHAR(45) NULL,
-  `Apellido2` VARCHAR(45) NULL,
-  PRIMARY KEY (`Nif`));
+CREATE TABLE IF NOT EXISTS `mydb`.`PROGRAMA` (
+  `cod_programa` INT NOT NULL,
+  `lenguaje` VARCHAR(20) NOT NULL,
+  `sistema-operativo` VARCHAR(15) NOT NULL,
+  `fecha-terminacion_dia` DATE NOT NULL,
+  `fecha_terminacion_mes` DATE NOT NULL,
+  `fecha_terminacion_año` DATE NOT NULL,
+  PRIMARY KEY (`cod_programa`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`E-E`
+-- Table `mydb`.`PROGRAMADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`E-E` (
-  `Nif_esresponsable` INT NOT NULL,
-  `departamento` VARCHAR(45) NOT NULL,
-  `Empleado_Nif_tieneresponsable` INT NOT NULL,
-  PRIMARY KEY (`Nif_esresponsable`),
-  INDEX `fk_E-E_Empleado_idx` (`Empleado_Nif_tieneresponsable` ASC) VISIBLE);
+CREATE TABLE IF NOT EXISTS `mydb`.`PROGRAMADOR` (
+  `nombre_programador` VARCHAR(30) NOT NULL,
+  `nombre_2` VARCHAR(15) NULL,
+  `apellido_1` VARCHAR(15) NOT NULL,
+  `apellido_2` VARCHAR(15) NULL,
+  `PROGRAMA_cod_programa` INT NOT NULL,
+  PRIMARY KEY (`nombre_programador`),
+  INDEX `fk_PROGRAMADOR_PROGRAMA_idx` (`PROGRAMA_cod_programa` ASC) VISIBLE)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

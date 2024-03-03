@@ -20,7 +20,9 @@ USE `mydb` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`Persona` (
   `Nif` INT NOT NULL,
   `Nombre` VARCHAR(45) NOT NULL,
-  `Apellidos` VARCHAR(45) NOT NULL,
+  `Nombre2` VARCHAR(45) NULL,
+  `Apellido1` VARCHAR(45) NOT NULL,
+  `Apellido2` VARCHAR(45) NULL,
   PRIMARY KEY (`Nif`))
 ENGINE = InnoDB;
 
@@ -31,8 +33,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Piso` (
   `Cod-Piso` INT NOT NULL,
   `Calle` VARCHAR(45) NOT NULL,
-  `Número` VARCHAR(45) NULL,
-  `Planta` VARCHAR(45) NULL,
+  `Número` INT NOT NULL,
+  `Planta` INT NOT NULL,
   `Puerta` VARCHAR(45) NULL,
   PRIMARY KEY (`Cod-Piso`))
 ENGINE = InnoDB;
@@ -44,20 +46,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`P-P` (
   `Persona_Nif` INT NOT NULL,
   `Piso_Cod-Piso` INT NOT NULL,
-  `Precio_Alquiler` VARCHAR(45) NULL,
+  `Precio_Alquiler` INT NOT NULL,
   PRIMARY KEY (`Persona_Nif`, `Piso_Cod-Piso`),
   INDEX `fk_Persona_has_Piso_Piso1_idx` (`Piso_Cod-Piso` ASC) VISIBLE,
-  INDEX `fk_Persona_has_Piso_Persona_idx` (`Persona_Nif` ASC) VISIBLE,
-  CONSTRAINT `fk_Persona_has_Piso_Persona`
-    FOREIGN KEY (`Persona_Nif`)
-    REFERENCES `mydb`.`Persona` (`Nif`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Persona_has_Piso_Piso1`
-    FOREIGN KEY (`Piso_Cod-Piso`)
-    REFERENCES `mydb`.`Piso` (`Cod-Piso`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_Persona_has_Piso_Persona_idx` (`Persona_Nif` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

@@ -18,7 +18,7 @@ USE `5.8.1` ;
 -- Table `5.8.1`.`EDIFICIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `5.8.1`.`EDIFICIO` (
-  `cod-edificio` VARCHAR(120) NOT NULL,
+  `cod-edificio` INT NOT NULL,
   `calle` VARCHAR(45) NOT NULL,
   `colonia` VARCHAR(45) NOT NULL,
   `ciudad` VARCHAR(45) NOT NULL,
@@ -41,17 +41,17 @@ ENGINE = InnoDB;
 -- Table `5.8.1`.`ARQUITECTO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `5.8.1`.`ARQUITECTO` (
-  `cod-empleado` VARCHAR(20) NOT NULL,
-  `primer-nombre` VARCHAR(45) NOT NULL,
-  `segundo-nombre` VARCHAR(45) NOT NULL,
-  `primer-apellido` VARCHAR(45) NOT NULL,
-  `segundo-apellido` VARCHAR(45) NOT NULL,
+  `cod-empleado` INT NOT NULL,
+  `primer-nombre` VARCHAR(20) NOT NULL,
+  `segundo-nombre` VARCHAR(20) NULL,
+  `primer-apellido` VARCHAR(20) NOT NULL,
+  `segundo-apellido` VARCHAR(20) NOT NULL,
   `calle` VARCHAR(45) NOT NULL,
   `colonia` VARCHAR(45) NOT NULL,
-  `cod-postal` VARCHAR(45) NOT NULL,
-  `Num-colegiado` VARCHAR(45) NOT NULL,
+  `cod-postal` INT NOT NULL,
+  `Num-colegiado` INT NOT NULL,
   `FACULTAD_Cod-facultad` INT NOT NULL,
-  PRIMARY KEY (`cod-empleado`, `FACULTAD_Cod-facultad`),
+  PRIMARY KEY (`cod-empleado`),
   INDEX `fk_ARQUITECTO_FACULTAD1_idx` (`FACULTAD_Cod-facultad` ASC) VISIBLE)
 ENGINE = InnoDB;
 
@@ -60,14 +60,14 @@ ENGINE = InnoDB;
 -- Table `5.8.1`.`CAPATAZ`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `5.8.1`.`CAPATAZ` (
-  `cod-empleado` VARCHAR(20) NOT NULL,
-  `primer-nombre` VARCHAR(45) NOT NULL,
-  `segundo-nombre` VARCHAR(45) NOT NULL,
-  `primer-apellido` VARCHAR(45) NOT NULL,
-  `segundo-apellido` VARCHAR(45) NOT NULL,
+  `cod-empleado` INT NOT NULL,
+  `primer-nombre` VARCHAR(20) NOT NULL,
+  `segundo-nombre` VARCHAR(20) NULL,
+  `primer-apellido` VARCHAR(20) NOT NULL,
+  `segundo-apellido` VARCHAR(20) NOT NULL,
   `calle` VARCHAR(45) NOT NULL,
   `colonia` VARCHAR(45) NOT NULL,
-  `cod-postal` VARCHAR(45) NOT NULL,
+  `cod-postal` INT NOT NULL,
   PRIMARY KEY (`cod-empleado`))
 ENGINE = InnoDB;
 
@@ -76,17 +76,17 @@ ENGINE = InnoDB;
 -- Table `5.8.1`.`ALBAÑIL`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `5.8.1`.`ALBAÑIL` (
-  `cod-empleado` VARCHAR(20) NOT NULL,
-  `primer-nombre` VARCHAR(45) NOT NULL,
-  `segundo-nombre` VARCHAR(45) NOT NULL,
-  `primer-apellido` VARCHAR(45) NOT NULL,
-  `segundo-apellido` VARCHAR(45) NOT NULL,
+  `cod-empleado` INT NOT NULL,
+  `primer-nombre` VARCHAR(20) NOT NULL,
+  `segundo-nombre` VARCHAR(20) NULL,
+  `primer-apellido` VARCHAR(20) NOT NULL,
+  `segundo-apellido` VARCHAR(20) NOT NULL,
   `calle` VARCHAR(45) NOT NULL,
   `colonia` VARCHAR(45) NOT NULL,
-  `cod-postal` VARCHAR(45) NOT NULL,
+  `cod-postal` INT NOT NULL,
   `especialidad` VARCHAR(45) NOT NULL,
-  `CAPATAZ_cod-empleado` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`cod-empleado`, `CAPATAZ_cod-empleado`),
+  `CAPATAZ_cod-empleado` INT NOT NULL,
+  PRIMARY KEY (`cod-empleado`),
   INDEX `fk_ALBAÑIL_CAPATAZ1_idx` (`CAPATAZ_cod-empleado` ASC) VISIBLE)
 ENGINE = InnoDB;
 
@@ -102,30 +102,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `5.8.1`.`E-A`
+-- Table `5.8.1`.`E-C`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `5.8.1`.`E-A` (
-  `fecha-inicio` DATE NOT NULL,
-  `fecha-fin` DATE NOT NULL,
-  `Cod-edificio` VARCHAR(120) NOT NULL,
-  `Cod-empleado` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`fecha-inicio`, `Cod-edificio`, `Cod-empleado`),
-  INDEX `fk_E-A_EDIFICIO_idx` (`Cod-edificio` ASC) VISIBLE,
-  INDEX `fk_E-A_ARQUITECTO1_idx` (`Cod-empleado` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `5.8.1`.`E-AL`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `5.8.1`.`E-AL` (
-  `Fecha_Inicio` DATE NOT NULL,
-  `Fecha_Fin` DATE NULL,
-  `ALBAÑIL_cod-empleado` VARCHAR(20) NOT NULL,
-  `EDIFICIO_cod-edificio` VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`Fecha_Inicio`),
-  INDEX `fk_E-AL_ALBAÑIL1_idx` (`ALBAÑIL_cod-empleado` ASC) VISIBLE,
-  INDEX `fk_E-AL_EDIFICIO1_idx` (`EDIFICIO_cod-edificio` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `5.8.1`.`E-C` (
+  `EDIFICIO_cod-edificio` INT NOT NULL,
+  `CAPATAZ_cod-empleado` INT NOT NULL,
+  `Fecha inicio dia` DATE NOT NULL,
+  `Fecha inicio mes` DATE NOT NULL,
+  `Fecha inicio año` DATE NOT NULL,
+  `Fecha fin dia` DATE NOT NULL,
+  `Fecha fin mes` DATE NOT NULL,
+  `Fecha fin año` DATE NOT NULL,
+  PRIMARY KEY (`EDIFICIO_cod-edificio`, `CAPATAZ_cod-empleado`),
+  INDEX `fk_EDIFICIO_has_CAPATAZ_CAPATAZ1_idx` (`CAPATAZ_cod-empleado` ASC) VISIBLE,
+  INDEX `fk_EDIFICIO_has_CAPATAZ_EDIFICIO1_idx` (`EDIFICIO_cod-edificio` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -133,26 +123,29 @@ ENGINE = InnoDB;
 -- Table `5.8.1`.`A-H`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `5.8.1`.`A-H` (
-  `` INT NOT NULL,
-  `ALBAÑIL_cod-empleado` VARCHAR(20) NOT NULL,
+  `ALBAÑIL_cod-empleado` INT NOT NULL,
   `HERRAMIENTA_Cod-herramienta` INT NOT NULL,
-  PRIMARY KEY (``),
-  INDEX `fk_A-H_ALBAÑIL1_idx` (`ALBAÑIL_cod-empleado` ASC) VISIBLE,
-  INDEX `fk_A-H_HERRAMIENTA1_idx` (`HERRAMIENTA_Cod-herramienta` ASC) VISIBLE)
+  PRIMARY KEY (`ALBAÑIL_cod-empleado`, `HERRAMIENTA_Cod-herramienta`),
+  INDEX `fk_ALBAÑIL_has_HERRAMIENTA_HERRAMIENTA1_idx` (`HERRAMIENTA_Cod-herramienta` ASC) VISIBLE,
+  INDEX `fk_ALBAÑIL_has_HERRAMIENTA_ALBAÑIL1_idx` (`ALBAÑIL_cod-empleado` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `5.8.1`.`E-C`
+-- Table `5.8.1`.`E-A`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `5.8.1`.`E-C` (
-  `fecha-inicio` DATE NOT NULL,
-  `fecha-fin` DATE NULL,
-  `EDIFICIO_cod-edificio` VARCHAR(120) NOT NULL,
-  `CAPATAZ_cod-empleado` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`fecha-inicio`, `EDIFICIO_cod-edificio`, `CAPATAZ_cod-empleado`),
-  INDEX `fk_E-C_EDIFICIO1_idx` (`EDIFICIO_cod-edificio` ASC) VISIBLE,
-  INDEX `fk_E-C_CAPATAZ1_idx` (`CAPATAZ_cod-empleado` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `5.8.1`.`E-A` (
+  `EDIFICIO_cod-edificio` INT NOT NULL,
+  `ALBAÑIL_cod-empleado` INT NOT NULL,
+  `Fecha inicio dia` DATE NOT NULL,
+  `Fecha inicio mes` DATE NOT NULL,
+  `Fecha inicio año` DATE NOT NULL,
+  `Fecha fin dia` DATE NOT NULL,
+  `Fecha fin mes` DATE NOT NULL,
+  `Fecha fin año` DATE NOT NULL,
+  PRIMARY KEY (`EDIFICIO_cod-edificio`, `ALBAÑIL_cod-empleado`),
+  INDEX `fk_EDIFICIO_has_ALBAÑIL_ALBAÑIL1_idx` (`ALBAÑIL_cod-empleado` ASC) VISIBLE,
+  INDEX `fk_EDIFICIO_has_ALBAÑIL_EDIFICIO1_idx` (`EDIFICIO_cod-edificio` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

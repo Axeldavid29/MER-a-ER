@@ -19,9 +19,10 @@ USE `EmpleadoVehiculo3` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo3`.`EMPLEADO` (
   `codemp` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido1` VARCHAR(45) NULL,
-  `apellido2` VARCHAR(45) NULL,
+  `nombre` VARCHAR(25) NOT NULL,
+  `apellido1` VARCHAR(25) NOT NULL,
+  `apellido2` VARCHAR(25) NOT NULL,
+  `Nombre2` VARCHAR(25) NULL,
   PRIMARY KEY (`codemp`))
 ENGINE = InnoDB;
 
@@ -31,7 +32,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo3`.`VEHICULO` (
   `matricula` INT NOT NULL,
-  `modelo` VARCHAR(45) NULL,
+  `modelo` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`matricula`))
 ENGINE = InnoDB;
 
@@ -40,9 +41,11 @@ ENGINE = InnoDB;
 -- Table `EmpleadoVehiculo3`.`CONDUCE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo3`.`CONDUCE` (
-  `fecha_inicio` INT NULL,
+  `fecha_inicio_dia` DATE NOT NULL,
   `EMPLEADO_codemp` INT NOT NULL,
   `VEHICULO_matricula` INT NOT NULL,
+  `fecha_inicio_mes` DATE NOT NULL,
+  `fecha_inicio_año` DATE NOT NULL,
   INDEX `fk_CONDUCE_EMPLEADO_idx` (`EMPLEADO_codemp` ASC) VISIBLE,
   INDEX `fk_CONDUCE_VEHICULO1_idx` (`VEHICULO_matricula` ASC) VISIBLE)
 ENGINE = InnoDB;

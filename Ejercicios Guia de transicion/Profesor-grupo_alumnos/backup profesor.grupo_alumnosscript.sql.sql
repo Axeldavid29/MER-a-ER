@@ -19,11 +19,11 @@ USE `Profesor-Grupo_alumnos` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Profesor-Grupo_alumnos`.`Profesor` (
   `Cod_profesor` INT NOT NULL,
-  `Nif` VARCHAR(45) NOT NULL,
-  `Primer nombre` VARCHAR(45) NOT NULL,
-  `Segundo nombre` VARCHAR(45) NOT NULL,
-  `Prmer apellido` VARCHAR(45) NOT NULL,
-  `Segundo apellido` VARCHAR(45) NOT NULL,
+  `Nif` INT NOT NULL,
+  `Primer nombre` VARCHAR(20) NOT NULL,
+  `Segundo nombre` VARCHAR(20) NULL,
+  `Prmer apellido` VARCHAR(20) NOT NULL,
+  `Segundo apellido` VARCHAR(20) NULL,
   PRIMARY KEY (`Cod_profesor`))
 ENGINE = InnoDB;
 

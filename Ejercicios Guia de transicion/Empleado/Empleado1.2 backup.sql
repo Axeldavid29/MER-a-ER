@@ -5,38 +5,36 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema EmpleadoVehiculo2
+-- Schema mydb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema EmpleadoVehiculo2
+-- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `EmpleadoVehiculo2` DEFAULT CHARACTER SET utf8 ;
-USE `EmpleadoVehiculo2` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `EmpleadoVehiculo2`.`VEHICULO`
+-- Table `mydb`.`Empleado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo2`.`VEHICULO` (
-  `matricula` VARCHAR(45) NOT NULL,
-  `modelo` VARCHAR(45) NULL,
-  PRIMARY KEY (`matricula`))
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `mydb`.`Empleado` (
+  `Nif` INT NOT NULL,
+  `Nombre` VARCHAR(20) NOT NULL,
+  `Nombre2` VARCHAR(20) NULL,
+  `Apellido1` VARCHAR(20) NOT NULL,
+  `Apellido2` VARCHAR(20) NULL,
+  PRIMARY KEY (`Nif`));
 
 
 -- -----------------------------------------------------
--- Table `EmpleadoVehiculo2`.`EMPLEADO`
+-- Table `mydb`.`E-E`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `EmpleadoVehiculo2`.`EMPLEADO` (
-  `codemp` INT NOT NULL,
-  `nombre` VARCHAR(45) NULL,
-  `apellido1` VARCHAR(45) NULL,
-  `apellido2` VARCHAR(45) NULL,
-  `fecha_inicio` DATE NOT NULL,
-  `VEHICULO_matricula` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`codemp`),
-  INDEX `fk_EMPLEADO_VEHICULO_idx` (`VEHICULO_matricula` ASC) VISIBLE)
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `mydb`.`E-E` (
+  `Nif_esresponsable` INT NOT NULL,
+  `departamento` VARCHAR(45) NOT NULL,
+  `Empleado_Nif_tieneresponsable` INT NOT NULL,
+  PRIMARY KEY (`Nif_esresponsable`),
+  INDEX `fk_E-E_Empleado_idx` (`Empleado_Nif_tieneresponsable` ASC) VISIBLE);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

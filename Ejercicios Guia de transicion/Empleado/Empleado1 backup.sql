@@ -18,9 +18,10 @@ USE `mydb` ;
 -- Table `mydb`.`EMPLEADO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`EMPLEADO` (
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Apellido` VARCHAR(45) NULL,
-  `Apellido2` VARCHAR(45) NULL,
+  `Nombre` VARCHAR(20) NOT NULL,
+  `Nombre2` VARCHAR(20) NULL,
+  `Apellido1` VARCHAR(20) NOT NULL,
+  `Apellido2` VARCHAR(20) NULL,
   `Departamento` VARCHAR(45) NULL,
   `Nif_esresponsable` INT NOT NULL,
   `Nif_tienereponsable` INT NOT NULL,

@@ -19,8 +19,10 @@ USE `mydb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Piloto` (
   `Nif` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Apellidos` VARCHAR(45) NOT NULL,
+  `Nombre1` VARCHAR(20) NOT NULL,
+  `Nombre2` VARCHAR(20) NULL,
+  `Apellido1` VARCHAR(20) NOT NULL,
+  `Apellido2` VARCHAR(20) NULL,
   PRIMARY KEY (`Nif`))
 ENGINE = InnoDB;
 
@@ -29,8 +31,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Ciudad`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Ciudad` (
-  `Nombre-Ciudad` INT NOT NULL,
-  `País` VARCHAR(45) NOT NULL,
+  `Nombre-Ciudad` VARCHAR(20) NOT NULL,
+  `País` VARCHAR(20) NOT NULL,
   `Número-habitantes` INT NOT NULL,
   PRIMARY KEY (`Nombre-Ciudad`))
 ENGINE = InnoDB;
@@ -52,28 +54,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`P-C-A` (
   `Piloto_Nif` INT NOT NULL,
-  `Ciudad_Nombre-Ciudad` INT NOT NULL,
+  `Ciudad_Nombre-Ciudad` VARCHAR(20) NOT NULL,
   `Avión_Cod-avión` INT NOT NULL,
-  `Fecha` DATETIME NOT NULL,
+  `Fecha dia` DATETIME NOT NULL,
+  `Fecha mes` DATE NOT NULL,
+  `Fecha año` DATE NOT NULL,
   PRIMARY KEY (`Piloto_Nif`, `Ciudad_Nombre-Ciudad`, `Avión_Cod-avión`),
   INDEX `fk_Piloto_has_Ciudad_Ciudad1_idx` (`Ciudad_Nombre-Ciudad` ASC) VISIBLE,
   INDEX `fk_Piloto_has_Ciudad_Piloto_idx` (`Piloto_Nif` ASC) VISIBLE,
-  INDEX `fk_Piloto_has_Ciudad_Avión1_idx` (`Avión_Cod-avión` ASC) VISIBLE,
-  CONSTRAINT `fk_Piloto_has_Ciudad_Piloto`
-    FOREIGN KEY (`Piloto_Nif`)
-    REFERENCES `mydb`.`Piloto` (`Nif`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Piloto_has_Ciudad_Ciudad1`
-    FOREIGN KEY (`Ciudad_Nombre-Ciudad`)
-    REFERENCES `mydb`.`Ciudad` (`Nombre-Ciudad`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Piloto_has_Ciudad_Avión1`
-    FOREIGN KEY (`Avión_Cod-avión`)
-    REFERENCES `mydb`.`Avión` (`Cod-avión`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_Piloto_has_Ciudad_Avión1_idx` (`Avión_Cod-avión` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
